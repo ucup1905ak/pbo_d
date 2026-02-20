@@ -6,7 +6,7 @@ public class PBO_1 {
         for (String asdos : ListOfAsdos){
             System.out.println("Asdos : " + asdos);
         }
-        System.err.println("WOI INI SUDAH HARUSNYA PULANG, INI DARI GIT");
+        System.err.println("WOI INI SUDAH HARUSNYA PULANG, INI DARI GIT, 2");
         
     }
     
