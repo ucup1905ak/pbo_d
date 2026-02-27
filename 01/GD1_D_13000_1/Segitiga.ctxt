@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Segitiga
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Segitiga\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=Segitiga()
+comment2.params=alas\ tinggi
+comment2.target=Segitiga(double,\ double)
+comment3.params=alas
+comment3.target=void\ setAlas(double)
+comment4.params=tinggi
+comment4.target=void\ setTinggi(double)
+comment5.params=
+comment5.target=double\ getAlas()
+comment6.params=
+comment6.target=double\ getTinggi()
+comment7.params=
+comment7.target=double\ luas()
+comment8.params=
+comment8.target=double\ pythagoras()
+numComments=9
