@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Kapal
+comment1.params=nama\ berat\ kapasitas\ kapasitasMuatan
+comment1.target=Kapal(java.lang.String,\ double,\ int,\ int)
+comment2.params=
+comment2.target=void\ tampilDataKapal()
+comment3.params=jarakKm
+comment3.target=void\ cekKapal(double)
+numComments=4

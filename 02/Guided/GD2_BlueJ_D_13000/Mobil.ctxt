@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Mobil
+comment1.params=nama\ berat\ kapasitas\ jumlahPintu
+comment1.target=Mobil(java.lang.String,\ double,\ int,\ int)
+comment2.params=
+comment2.target=void\ tampilDataMobil()
+comment3.params=jarakKm
+comment3.target=void\ cekMobil(double)
+numComments=4

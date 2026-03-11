@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Transportasi
+comment1.params=nama\ berat\ kapasitas
+comment1.target=Transportasi(java.lang.String,\ double,\ int)
+comment2.params=
+comment2.target=void\ beroperasi()
+comment3.params=jarakKm
+comment3.target=double\ hitungOperasional(double)
+numComments=4

@@ -1,0 +1,7 @@
+public class Mobil extends Transportasi
+{
+	Mobil(String nama,berat,kapasitas){
+	super(nama,berat,kapasitas)
+	}
+}
+
