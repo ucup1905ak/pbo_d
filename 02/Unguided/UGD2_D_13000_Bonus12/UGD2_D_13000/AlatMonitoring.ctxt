@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=AlatMonitoring
+comment1.params=nama\ merek\ tahunProduksi\ daya\ kapasitasBaterai
+comment1.target=AlatMonitoring(java.lang.String,\ java.lang.String,\ int,\ double,\ int)
+comment2.params=persentaseBaterai
+comment2.target=void\ cekStatusBaterai(double)
+numComments=3

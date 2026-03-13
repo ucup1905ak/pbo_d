@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Radiologi
+comment1.params=nama\ merek\ tahunProduksi\ daya\ tipeScanner\ jenisStorage
+comment1.target=Radiologi(java.lang.String,\ java.lang.String,\ int,\ double,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=void\ tampilDataRadiologi()
+comment3.params=
+comment3.target=void\ cekKecepatanPenyimpanan()
+numComments=4

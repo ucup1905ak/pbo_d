@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=MonitorJantung
+comment1.params=nama\ merek\ tahunProduksi\ daya\ kapasitasBaterai\ akurasi
+comment1.target=MonitorJantung(java.lang.String,\ java.lang.String,\ int,\ double,\ int,\ double)
+comment2.params=
+comment2.target=void\ tampilDataMonitorJantung()
+comment3.params=
+comment3.target=void\ cekAkurasiSensor()
+numComments=4

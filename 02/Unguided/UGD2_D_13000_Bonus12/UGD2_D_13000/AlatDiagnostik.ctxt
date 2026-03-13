@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=AlatDiagnostik
+comment1.params=nama\ merek\ tahunProduksi\ daya\ tipeScanner
+comment1.target=AlatDiagnostik(java.lang.String,\ java.lang.String,\ int,\ double,\ java.lang.String)
+comment2.params=
+comment2.target=void\ hitungPerforma()
+numComments=3

@@ -1,0 +1,101 @@
+
+package tgs2_d_13000;
+
+public class TGS2_D_13000 {
+
+    public static void main(String[] args) {
+        MonitorJantung[] mj = new MonitorJantung[2];
+        mj[0] = new MonitorJantung("Monitor Jantung Pro", "Philips", 2023, 120.0, 5000, 98.5);
+        mj[1] = new MonitorJantung("ECG Monitor Basic", "Dräger", 2021, 110.0, 4200, 94.0);
+
+        PulseOximeter[] po = new PulseOximeter[2];
+        po[0] = new PulseOximeter("Pulse Oximeter X1", "Omron", 2024, 50.0, 3000, true);
+        po[1] = new PulseOximeter("Pulse Oximeter Mini", "Nonin", 2022, 45.0, 2500, false);
+
+        Radiologi[] r = new Radiologi[2];
+        r[0] = new Radiologi("Radiology Workstation Pro", "Siemens", 2022, 800.0, "CT Processing", "SSD");
+        r[1] = new Radiologi("Radiology Workstation Lite", "GE Healthcare", 2020, 650.0, "MRI Viewer", "HDD");
+
+        USG[] u = new USG[2];
+        u[0] = new USG("USG Console Alpha", "Samsung Medison", 2023, 500.0, "Ultrasound", 15.6);
+        u[1] = new USG("USG Console Mini", "Mindray", 2021, 450.0, "Ultrasound", 12.1);
+
+        PenyimpananObat[] p = new PenyimpananObat[2];
+        p[0] = new PenyimpananObat("Kulkas Obat Farmasi", "Haier Biomedical", 2022, 180.0, "Farmasi", 2);
+        p[1] = new PenyimpananObat("Kulkas Obat Ruang Perawat", "Panasonic", 2023, 150.0, "Rawat Inap", 1);
+
+        SterilizerAlat[] s = new SterilizerAlat[2];
+        s[0] = new SterilizerAlat("Sterilizer Autoclave A", "Getinge", 2020, 900.0, "CSSD", 8.0);
+        s[1] = new SterilizerAlat("Sterilizer Autoclave B", "Tuttnauer", 2021, 850.0, "CSSD", 10.0);
+
+        System.out.println("===== TAMPIL DATA MONITOR JANTUNG =====");
+        for (int i = 0; i < mj.length; i++) {
+            mj[i].tampilDataMonitorJantung();
+            System.out.println("");
+        }
+
+        System.out.println("===== TAMPIL DATA PULSE OXIMETER =====");
+        for (int i = 0; i < po.length; i++) {
+            po[i].tampilDataPulseOximeter();
+            System.out.println("");
+        }
+
+        System.out.println("===== TAMPIL DATA RADIOLOGI =====");
+        for (int i = 0; i < r.length; i++) {
+            r[i].tampilDataRadiologi();
+            System.out.println("");
+        }
+
+        System.out.println("===== TAMPIL DATA USG =====");
+        for (int i = 0; i < u.length; i++) {
+            u[i].tampilDataUSG();
+            System.out.println("");
+        }
+
+        System.out.println("===== TAMPIL DATA PENYIMPANAN OBAT =====");
+        for (int i = 0; i < p.length; i++) {
+            p[i].tampilDataSimpanObat();
+            System.out.println("");
+        }
+
+        System.out.println("===== TAMPIL DATA STERILIZER ALAT =====");
+        for (int i = 0; i < s.length; i++) {
+            s[i].tampilDataSterilizer();
+            System.out.println("");
+        }
+
+        System.out.println("========== CEK AKURASI SENSOR MONITOR JANTUNG ==========");
+        for (MonitorJantung monitor : mj) {
+            monitor.cekAkurasiSensor();
+        }
+        System.out.println("");
+
+        System.out.println("========== CEK DUKUNGAN ALARM PULSE OXIMETER ==========");
+        for (PulseOximeter ox : po) {
+            ox.cekDukunganAlarm();
+        }
+        System.out.println("");
+
+        System.out.println("========== CEK KECEPATAN PENYIMPANAN RADIOLOGI ==========");
+        for (Radiologi rad : r) {
+            rad.cekKecepatanPenyimpanan();
+        }
+        System.out.println("");
+
+        System.out.println("========== CEK DISPLAY USG ==========");
+        for (USG usg : u) {
+            usg.cekDisplay();
+        }
+        System.out.println("");
+
+        System.out.println("========== CEK KAPASITAS SIMPAN PENYIMPANAN OBAT ==========");
+        for (PenyimpananObat simpan : p) {
+            simpan.cekKapasitasSimpan();
+        }
+        System.out.println("");
+
+        System.out.println("========== HITUNG WAKTU STERILISASI STERILIZER ==========");
+        s[0].hitungWaktuSterilisasi(5.0);
+        s[1].hitungWaktuSterilisasi(8.5);
+    }
+}

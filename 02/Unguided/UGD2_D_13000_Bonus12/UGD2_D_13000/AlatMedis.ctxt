@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=AlatMedis
+comment1.params=nama\ merek\ tahunProduksi\ daya
+comment1.target=AlatMedis(java.lang.String,\ java.lang.String,\ int,\ double)
+comment2.params=jamPakaiHarian\ tarifListrik
+comment2.target=void\ hitungBiayaOperasional(double,\ double)
+numComments=3
