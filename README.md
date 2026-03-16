@@ -1,5 +1,6 @@
 Object Oriented Programming
----Hello! 👋 I'm **Farelino Alexander Kim**, and this is my public repository for the Object-Oriented Programming (OOP) course. This space serves as a documentation of my journey in mastering OOP principles, design patterns, and Java development.
+---
+Hello! 👋 I'm **Farelino Alexander Kim**, and this is my public repository for the Object-Oriented Programming (OOP) course. This space serves as a documentation of my journey in mastering OOP principles, design patterns, and Java development.
 <br>
 
 ## 🛠️ Tech Stack
