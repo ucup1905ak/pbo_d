@@ -1,0 +1,27 @@
+
+package ugd3_d_13000;
+
+
+public class UGD3_D_13000 {
+
+
+
+    public static void main(String[] args) {
+	KebunSawit kebun;
+
+        kebun = new BlokSawitMuda("Blok A1", "A1", 12.5, 2022, 3000000.0, "Tinggi");
+        kebun = new BlokSawitMuda("Blok A2", "A2", 10.0, 2021, 3000000.0, "Aktif", "Sedang");
+        kebun = new BlokSawitProduktif("Blok B1", "B1", 20.0, 2015, 4500000.0, "Aktif", 32.5);
+        kebun = new BlokSawitProduktif("Blok B2", "B2", 18.0, 2016, 4500000.0, 18.0);
+
+        if (KebunSawit.daftarKebun.isEmpty()) {
+            System.out.println("List kebun masih kosong!");
+        } else {
+//	    KebunSawit.selectionSort();
+            KebunSawit.tampilSemuaKebun();
+            System.out.println();
+	    System.out.println("=== Biaya Perawatan ===");
+            KebunSawit.tampilSemuaBiayaPerawatan();
+        }
+    }
+}

@@ -16,7 +16,10 @@ public class GD3_D_13000_2 {
         Mage m2 = new Mage("Gandalf", 15, 400, 250.0);
         daftarKarakter.add(m1);
         daftarKarakter.add(m2);
-
+        //daftarKarakter.get((int)index); //return m1
+        //daftarKarakter.set((int)index, (object)); //change inside 
+        //daftarKarakter.remove(1);
+        //daftarKarakter.clear();
         daftarKarakter.add(new Support("Angela", 8, 300, 25.0));
         daftarKarakter.add(new Support("Flora", 12, 320, 30.0));
 
