@@ -1,0 +1,33 @@
+        Restoran n1 = new Restoran("Nusantara", "Jl Pantai indah, Jakarta Selatan", 2000);
+        
+        Kitchen k1 = new Kitchen("Main Kitchen", "Grill", 30);
+        n1.addKitchen(k1);
+        
+        TimChef A = new TimChef("Hot Team", "Siang", 10, 15);
+        TimChef B = new TimChef("Fast Team", "Pagi", 8, 40);
+        TimChef C = new TimChef("Melt Team", "Malam", 13, 60);
+      
+        
+        A.addChef("Mikel", "Grill", 3);
+        A.addChef("Kika", "Grill", 4);
+        A.addChef("Nevil", "Fry", 5);
+        A.addChef("Lucas", "pastry", 2);
+        A.addChef("Mukti", "Fish", 6);
+        A.addChef("Toshi", "Saus", 4);
+     
+        B.addChef("Sinay", "Roast", 8);
+        B.addChef("Bitha", "Vegetable", 6);
+        B.addChef("Zelika", "Butcher", 5);
+        B.addChef("Beyond", "Grill", 4);
+        B.addChef("Ferrin", "Pastry", 3);
+        B.addChef("Alex", "Fry", 4);
+        
+        C.addChef("Ali", "Fry", 8);
+        C.addChef("Bagas", "Grill", 9);
+        C.addChef("Cula", "Pastry", 7);
+        C.addChef("Denis", "Roast", 8);
+        
+        n1.showRestoran();
+        A.showTimChef();
+        B.showTimChef();
+        C.showTimChef();
