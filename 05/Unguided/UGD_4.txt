@@ -1,0 +1,28 @@
+public class UGD_C {
+    public static void main(String[] args) {
+        DataMobil<Mobil> dataMobil = new DataMobil<>();
+        dataMobil.addMobil(new Mobil("Toyota Avanza", "BK 1234 AD", 350000, true));
+        dataMobil.addMobil(new Mobil("Honda Brio", "BK 5678 EF", 300000, false));
+        dataMobil.addMobil(new Mobil("Mitsubishi Xpander", "BK 9101 GH", 450000, false));
+        dataMobil.addMobil(new Mobil("Suzuki Ertiga", "BK 1122 IJ", 325000, true));
+
+        RentalMobil<Mobil, Pelanggan> rentalA = new RentalMobil<>("Rental Mobil Alex", dataMobil);
+        rentalA.addPelanggan(new Pelanggan("Andi", "1275010101010001", 21, "Jl. Setia Budi"));
+        rentalA.addPelanggan(new Pelanggan("Bima", "1275010101010002", 24, "Jl. Ringroad"));
+        rentalA.addPelanggan(new Pelanggan("Citra", "1275010101010003", 19, "Jl. Gagak Hitam"));
+        rentalA.addPelanggan(new Pelanggan("Dewi", "1275010101010004", 27, "Jl. Iskandar Muda"));
+        rentalA.displayAll();
+
+        dataMobil.addMobil(new Mobil("Toyota Innova", "BK 3344 KL", 550000, true));
+        dataMobil.addMobil(new Mobil("Daihatsu Sigra", "BK 5566 MN", 280000, false));
+        dataMobil.addMobil(new Mobil("Honda CRV", "BK 7788 OP", 800000, false));
+        dataMobil.addMobil(new Mobil("Wuling Confero", "BK 9900 QR", 300000, true));
+
+        RentalMobil<Mobil, Pelanggan> rentalB = new RentalMobil<>("Rental Mobil Medan Jaya", dataMobil);
+        rentalB.addPelanggan(new Pelanggan("Eka", "1275010101010005", 30, "Jl. Krakatau"));
+        rentalB.addPelanggan(new Pelanggan("Farhan", "1275010101010006", 22, "Jl. Asia"));
+        rentalB.addPelanggan(new Pelanggan("Gita", "1275010101010007", 26, "Jl. Cemara"));
+        rentalB.addPelanggan(new Pelanggan("Hana", "1275010101010008", 29, "Jl. Sutomo"));
+        rentalB.displayAll();
+    }
+}
