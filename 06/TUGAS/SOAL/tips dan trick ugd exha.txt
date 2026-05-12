@@ -1,0 +1,7 @@
+tips n trick selesai ugd exception handling dengan lancar:
+
+1. buat kelas exception dulu
+2. ⁠langsung copy main lalu pahami isi code main agar kalian dapat gambaran untuk isi code pada class-class yang diminta
+3. sangat disarankan untuk melengkapi kode main terlebih dahulu ( isi bagian //.. nya, jika masih ada merah nya setelah mengisi barulah kalian buat classnya)
+4. ⁠buat class yang diminta disoal
+5. ⁠sekian terimakasih
