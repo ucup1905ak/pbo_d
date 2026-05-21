@@ -262,4 +262,7 @@ public class KendaraanDAO implements IDAO<Kendaraan, String> {
         dbCon.closeConnection();
         return result;
     }
+
+
+
 }

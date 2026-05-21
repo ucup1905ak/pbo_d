@@ -17,7 +17,8 @@ public class Motor extends Kendaraan {
         super(id_kendaraan, nama, "Motor", harga);
         this.jumlah_tak = jumlah_tak;
     }
-
+    
+    
     public int getJumlah_tak() {
         return jumlah_tak;
     }

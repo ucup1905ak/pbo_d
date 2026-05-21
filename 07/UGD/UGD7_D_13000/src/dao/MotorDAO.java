@@ -56,7 +56,7 @@ public class MotorDAO extends KendaraanDAO implements IKendaraanDAO{
         {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Edited " + result + " Kendaraan " + id_kendaraan);
+            System.out.println("Deleted " + result + " Kendaraan " + id_kendaraan);
             
             statement.close();
         } catch (Exception e) {

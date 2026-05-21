@@ -1,0 +1,383 @@
+package dao;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import model.PaketServis;
+import model.PaketLengkap;
+import model.PaketRingan;
+
+/**
+ * Example DAO Implementation for PaketServis
+ * Shows how to use the SQL strings from PaketServisSQL class
+ */
+public class PaketServisDAO {
+    
+    private Connection connection;
+    
+    public PaketServisDAO(Connection connection) {
+        this.connection = connection;
+    }
+    
+    
+    // ========================================
+    // 1. INSERT OPERATION
+    // ========================================
+    
+    public void insert(PaketServis paketServis) {
+        String sql = "INSERT INTO paket_servis (" +
+                     "    id_paketservis, " +
+                     "    nama_paketservis, " +
+                     "    jenis_paketservis, " +
+                     "    durasi_pengerjaan" +
+                     ") VALUES (?, ?, ?, ?)";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, paketServis.getIdPaketServis());
+            stmt.setString(2, paketServis.getNamaPaketServis());
+            stmt.setString(3, paketServis.getJenisPaketServis());
+            stmt.setInt(4, paketServis.getDurasiPengerjaan());
+            stmt.executeUpdate();
+            
+            // Insert into child table based on type
+            if (paketServis instanceof PaketLengkap) {
+                insertPaketLengkap((PaketLengkap) paketServis);
+            } else if (paketServis instanceof PaketRingan) {
+                insertPaketRingan((PaketRingan) paketServis);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void insertPaketLengkap(PaketLengkap paket) {
+        String sql = "INSERT INTO paket_lengkap (" +
+                     "    id_paketservis, " +
+                     "    fasilitas_paket" +
+                     ") VALUES (?, ?)";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, paket.getIdPaketServis());
+            stmt.setString(2, paket.getFasilitasPaket());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void insertPaketRingan(PaketRingan paket) {
+        String sql = "INSERT INTO paket_ringan (" +
+                     "    id_paketservis, " +
+                     "    layanan_tambahan" +
+                     ") VALUES (?, ?)";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, paket.getIdPaketServis());
+            stmt.setString(2, paket.getLayananTambahan());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    // ========================================
+    // 2. SHOW DATA OPERATION
+    // ========================================
+    
+    public List<PaketServis> showData(String jenis) {
+        String sql = "SELECT " +
+                     "    ps.id_paketservis, " +
+                     "    ps.nama_paketservis, " +
+                     "    ps.jenis_paketservis, " +
+                     "    ps.durasi_pengerjaan, " +
+                     "    pl.fasilitas_paket, " +
+                     "    pr.layanan_tambahan " +
+                     "FROM paket_servis ps " +
+                     "LEFT JOIN paket_lengkap pl ON ps.id_paketservis = pl.id_paketservis " +
+                     "LEFT JOIN paket_ringan pr ON ps.id_paketservis = pr.id_paketservis " +
+                     "WHERE ps.jenis_paketservis = ? " +
+                     "ORDER BY ps.id_paketservis";
+        
+        List<PaketServis> listPaket = new ArrayList<>();
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, jenis);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                PaketServis paket = createPaketFromResultSet(rs);
+                listPaket.add(paket);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return listPaket;
+    }
+    
+    
+    // ========================================
+    // 3. UPDATE OPERATION
+    // ========================================
+    
+    public void update(PaketServis data, String id) {
+        // Check if jenis has changed
+        boolean jenisChanged = cekPerubahanJenis(data.getJenisPaketServis(), id);
+        
+        // Update main table
+        String sql = "UPDATE paket_servis " +
+                     "SET " +
+                     "    nama_paketservis = ?, " +
+                     "    jenis_paketservis = ?, " +
+                     "    durasi_pengerjaan = ? " +
+                     "WHERE id_paketservis = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, data.getNamaPaketServis());
+            stmt.setString(2, data.getJenisPaketServis());
+            stmt.setInt(3, data.getDurasiPengerjaan());
+            stmt.setString(4, id);
+            stmt.executeUpdate();
+            
+            if (jenisChanged) {
+                // Delete from both child tables
+                deleteFromChildTables(id);
+                
+                // Insert into new child table
+                if (data instanceof PaketLengkap) {
+                    insertPaketLengkap((PaketLengkap) data);
+                } else if (data instanceof PaketRingan) {
+                    insertPaketRingan((PaketRingan) data);
+                }
+            } else {
+                // Update child table only
+                if (data instanceof PaketLengkap) {
+                    updatePaketLengkap((PaketLengkap) data);
+                } else if (data instanceof PaketRingan) {
+                    updatePaketRingan((PaketRingan) data);
+                }
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void updatePaketLengkap(PaketLengkap paket) {
+        String sql = "UPDATE paket_lengkap " +
+                     "SET fasilitas_paket = ? " +
+                     "WHERE id_paketservis = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, paket.getFasilitasPaket());
+            stmt.setString(2, paket.getIdPaketServis());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void updatePaketRingan(PaketRingan paket) {
+        String sql = "UPDATE paket_ringan " +
+                     "SET layanan_tambahan = ? " +
+                     "WHERE id_paketservis = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, paket.getLayananTambahan());
+            stmt.setString(2, paket.getIdPaketServis());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void deleteFromChildTables(String id) {
+        String sqlLengkap = "DELETE FROM paket_lengkap WHERE id_paketservis = ?";
+        String sqlRingan = "DELETE FROM paket_ringan WHERE id_paketservis = ?";
+        
+        try (PreparedStatement stmt1 = connection.prepareStatement(sqlLengkap);
+             PreparedStatement stmt2 = connection.prepareStatement(sqlRingan)) {
+            
+            stmt1.setString(1, id);
+            stmt1.executeUpdate();
+            
+            stmt2.setString(1, id);
+            stmt2.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    // ========================================
+    // 4. DELETE OPERATION
+    // ========================================
+    
+    public void delete(String id) {
+        String sql = "DELETE FROM paket_servis " +
+                     "WHERE id_paketservis = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, id);
+            stmt.executeUpdate();
+            
+            // CASCADE will automatically delete from child tables
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    // ========================================
+    // 5. SEARCH OPERATION
+    // ========================================
+    
+    public PaketServis search(String id) {
+        String sql = "SELECT " +
+                     "    ps.id_paketservis, " +
+                     "    ps.nama_paketservis, " +
+                     "    ps.jenis_paketservis, " +
+                     "    ps.durasi_pengerjaan, " +
+                     "    pl.fasilitas_paket, " +
+                     "    pr.layanan_tambahan " +
+                     "FROM paket_servis ps " +
+                     "LEFT JOIN paket_lengkap pl ON ps.id_paketservis = pl.id_paketservis " +
+                     "LEFT JOIN paket_ringan pr ON ps.id_paketservis = pr.id_paketservis " +
+                     "WHERE ps.id_paketservis = ?";
+        
+        PaketServis paket = null;
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                paket = createPaketFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return paket;
+    }
+    
+    
+    // ========================================
+    // 6. GENERATE ID OPERATION
+    // ========================================
+    
+    public int generateId() {
+        // Using Method 2: Count-based ID generation
+        String sql = "SELECT COUNT(*) + 1 AS next_id " +
+                     "FROM paket_servis";
+        
+        int nextId = 1;
+        
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            
+            if (rs.next()) {
+                nextId = rs.getInt("next_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return nextId;
+    }
+    
+    // Alternative: Generate custom format ID (e.g., PS001)
+    public String generateCustomId() {
+        String sql = "SELECT " +
+                     "    CONCAT('PS', " +
+                     "           LPAD(" +
+                     "               COALESCE(" +
+                     "                   MAX(CAST(SUBSTRING(id_paketservis, 3) AS UNSIGNED)), " +
+                     "                   0" +
+                     "               ) + 1, " +
+                     "               3, " +
+                     "               '0'" +
+                     "           )" +
+                     "    ) AS next_id " +
+                     "FROM paket_servis";
+        
+        String nextId = "PS001";
+        
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            
+            if (rs.next()) {
+                nextId = rs.getString("next_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return nextId;
+    }
+    
+    
+    // ========================================
+    // 7. CEK PERUBAHAN JENIS OPERATION
+    // ========================================
+    
+    public boolean cekPerubahanJenis(String jenis, String id) {
+        String sql = "SELECT " +
+                     "    CASE " +
+                     "        WHEN jenis_paketservis = ? THEN 0 " +
+                     "        ELSE 1 " +
+                     "    END AS is_changed " +
+                     "FROM paket_servis " +
+                     "WHERE id_paketservis = ?";
+        
+        boolean isChanged = false;
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, jenis);
+            stmt.setString(2, id);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                isChanged = (rs.getInt("is_changed") == 1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return isChanged;
+    }
+    
+    
+    // ========================================
+    // HELPER METHOD
+    // ========================================
+    
+    private PaketServis createPaketFromResultSet(ResultSet rs) throws SQLException {
+        String idPaket = rs.getString("id_paketservis");
+        String nama = rs.getString("nama_paketservis");
+        String jenis = rs.getString("jenis_paketservis");
+        int durasi = rs.getInt("durasi_pengerjaan");
+        
+        String fasilitasPaket = rs.getString("fasilitas_paket");
+        String layananTambahan = rs.getString("layanan_tambahan");
+        
+        PaketServis paket;
+        
+        if (fasilitasPaket != null) {
+            // It's a PaketLengkap
+            paket = new PaketLengkap(idPaket, nama, jenis, durasi, fasilitasPaket);
+        } else if (layananTambahan != null) {
+            // It's a PaketRingan
+            paket = new PaketRingan(idPaket, nama, jenis, durasi, layananTambahan);
+        } else {
+            // Base PaketServis
+            paket = new PaketServis(idPaket, nama, jenis, durasi);
+        }
+        
+        return paket;
+    }
+}
