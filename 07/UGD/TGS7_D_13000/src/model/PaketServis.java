@@ -65,7 +65,8 @@ public abstract class PaketServis {
         return this.id + " | "
                 + this.nama + " | "
                 + this.jenis + " | "
-                + this.durasi;
+                + this.durasi + " | "
+                + this.getSpecial();
     }
 
     public abstract String getSpecial();
