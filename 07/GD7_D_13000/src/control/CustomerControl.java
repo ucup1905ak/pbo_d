@@ -9,7 +9,7 @@ import model.Customer;
 import dao.CustomerDAO;
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 
 public class CustomerControl {
