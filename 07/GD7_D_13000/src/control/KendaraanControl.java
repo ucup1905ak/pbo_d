@@ -5,7 +5,7 @@ import model.Kendaraan;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 
 public class KendaraanControl {

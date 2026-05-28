@@ -11,7 +11,7 @@ import model.Mobil;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 public class MobilDAO extends KendaraanDAO implements IKendaraanDAO {
 

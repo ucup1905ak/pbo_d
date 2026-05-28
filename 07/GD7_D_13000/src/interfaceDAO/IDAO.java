@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 public interface IDAO<T, I> {
     public void insert(T data);

@@ -6,7 +6,7 @@ package view;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 import control.*;
 import Exception.*;

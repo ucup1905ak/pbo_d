@@ -2,7 +2,7 @@ package Exception;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 public class NoTelponException extends Exception{
     public  String message(){

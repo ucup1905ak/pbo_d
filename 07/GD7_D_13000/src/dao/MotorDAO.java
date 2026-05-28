@@ -11,7 +11,7 @@ import model.Motor;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 
 public class MotorDAO extends KendaraanDAO implements IKendaraanDAO{

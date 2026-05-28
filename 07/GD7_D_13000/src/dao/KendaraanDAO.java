@@ -15,7 +15,7 @@ import model.Motor;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 // ... (lines 21 and above are truncated)
 public class KendaraanDAO implements IDAO<Kendaraan, String> {

@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 public abstract class Kendaraan {
     private String id_kendaraan, nama, jenis;

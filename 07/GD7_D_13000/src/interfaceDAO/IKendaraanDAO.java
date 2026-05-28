@@ -6,7 +6,7 @@ package interfaceDAO;
 
 /**
  *
- * @author farel
+ * @author Farelino Alexander Kim / 240713000
  */
 public interface IKendaraanDAO {
     public void deleteOldRole(String data);
