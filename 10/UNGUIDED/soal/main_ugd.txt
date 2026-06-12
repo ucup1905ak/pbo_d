@@ -1,0 +1,27 @@
+            MarkasBesar markasTNI = new MarkasBesar("Markas Besar TNI", 1945, 50000000);
+            Komandan Dio = new Komandan(8, "Jenderal Dio", 10000000, markasTNI);
+ 
+            markasTNI.setKomandanUtama(Dio);
+ 
+            Komandan michael  = new Komandan(3, "Kolonel Michael",  7000000, markasTNI);
+            Komandan tosi = new Komandan(6, "Mayor Tosi",   8000000, markasTNI);
+            Dio.rekrutPasukan(michael);
+            Dio.rekrutPasukan(tosi);
+ 
+            Prajurit p1 = new Prajurit("Infanteri", "Rina",    3500000, markasTNI);
+            Prajurit p2 = new Prajurit("Artileri",  "Doni",    3500000, markasTNI);
+            Prajurit p3 = new Prajurit("Infanteri", "Kartika", 3500000, markasTNI);
+            Prajurit p4 = new Prajurit("Artileri",  "Hendra",  3500000, markasTNI);
+ 
+            michael.rekrutPasukan(p1);
+            michael.rekrutPasukan(p2);
+            tosi.rekrutPasukan(p3);
+            tosi.rekrutPasukan(p4);
+ 
+            markasTNI.TampilStrukturKomando();
+ 
+            System.out.println("\nTampilan setelah menerima anggaran operasional sebesar 1000000");
+            markasTNI.terimaAnggaranOperasional(1000000);
+ 
+            System.out.println("\n\tSetelah Menerima Anggaran Operasional...\n");
+            markasTNI.TampilStrukturKomando();
