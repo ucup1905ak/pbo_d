@@ -1,0 +1,39 @@
+public static void main(String[] args) throws Exception {
+       try {
+            MarkasBesar markasTNI = MarkasBesar.getMarkasBesar("Markas Besar TNI", 1945, 50000000);
+
+            PersonilMiliterFactory pmf = PersonilMiliterFactory.getPersonilFactory();
+
+            Komandan Dio = (Komandan) pmf.createPersonil(8, "Jenderal Dio", 10000000, markasTNI, "Komandan");
+
+            markasTNI.setKomandanUtama(Dio);
+
+            Komandan michael  = (Komandan) pmf.createPersonil(3, "Kolonel Michael",  7000000, markasTNI, "Komandan");
+            Komandan tosi = (Komandan) pmf.createPersonil(6, "Mayor Tosi",   8000000, markasTNI, "Komandan");
+            Dio.rekrutPasukan(michael);
+            Dio.rekrutPasukan(tosi);
+
+            Prajurit p1 = (Prajurit) pmf.createPersonil("Infanteri", "Rina",    3500000, markasTNI, "Prajurit");
+            Prajurit p2 = (Prajurit) pmf.createPersonil("Artileri",  "Doni",    3500000, markasTNI, "Prajurit");
+            Prajurit p3 = (Prajurit) pmf.createPersonil("Infanteri", "Kartika", 3500000, markasTNI, "Prajurit");
+            Prajurit p4 = (Prajurit) pmf.createPersonil("Artileri",  "Hendra",  3500000, markasTNI, "Prajurit");
+
+            michael.rekrutPasukan(p1);
+            michael.rekrutPasukan(p2);
+            tosi.rekrutPasukan(p3);
+            tosi.rekrutPasukan(p4);
+
+            markasTNI.TampilStrukturKomando();
+
+            System.out.println("\nTampilan setelah menerima anggaran operasional sebesar 1000000");
+            markasTNI.terimaAnggaranOperasional(1000000);
+
+            System.out.println("\n\tSetelah Menerima Anggaran Operasional...\n");
+            markasTNI.TampilStrukturKomando();
+
+       } catch (JabatanException je){
+           System.err.println(je.getMessage());
+       } catch (Exception e) {
+            System.err.println(e.getMessage());
+       }
+    }
